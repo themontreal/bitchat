@@ -86,7 +86,7 @@ struct SwampHeaderView: View {
 
             // Mesh status indicator
             Circle()
-                .fill(viewModel.chatViewModel.bleService.isRunning ? Color.green : Color.gray)
+                .fill(viewModel.chatViewModel.isConnected ? Color.green : Color.gray)
                 .frame(width: 12, height: 12)
         }
         .padding()

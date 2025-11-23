@@ -26,17 +26,21 @@ class FrogChatViewModel: ObservableObject {
 
     // Computed properties
     var nearbyFrogs: [FrogPeer] {
-        chatViewModel.unifiedPeerService.connectedPeers.map { peer in
+        // Use allPeers which is public @Published property
+        chatViewModel.allPeers.filter { $0.isConnected }.map { peer in
             FrogPeer(from: peer, hopsAway: calculateHops(to: peer.peerID))
         }
     }
 
     var swampName: String {
-        guard let channel = chatViewModel.locationChannelManager.currentLocationChannel else {
+        // LocationChannelManager is a singleton
+        guard let channel = LocationChannelManager.shared.selectedChannel else {
             return "Wandering Swamp"
         }
 
-        switch channel.precision {
+        // Extract precision from geohash length
+        let precision = channel.geohash.count
+        switch precision {
         case 7: return "Small Puddle 💧"
         case 6: return "Moonlight Pond 🌊"
         case 5: return "Downtown Swamp 🐊"
@@ -57,11 +61,12 @@ class FrogChatViewModel: ObservableObject {
 
     private func setupObservers() {
         // Play croaks when new peers discovered
-        chatViewModel.unifiedPeerService.$connectedPeers
+        chatViewModel.$allPeers
             .sink { [weak self] peers in
                 guard let self = self, self.proximityAudioEnabled else { return }
 
-                peers.forEach { peer in
+                // Only croak for connected peers
+                peers.filter { $0.isConnected }.forEach { peer in
                     let hops = self.calculateHops(to: peer.peerID)
                     self.soundManager.playCroakFor(peer: peer.peerID, hopsAway: hops)
                 }
@@ -114,7 +119,7 @@ class FrogChatViewModel: ObservableObject {
     private func calculateHops(to peerID: PeerID) -> Int {
         // For now, simple calculation based on connection
         // TODO: Implement actual hop count from BLEService
-        return chatViewModel.unifiedPeerService.connectedPeers.contains(where: { $0.peerID == peerID }) ? 1 : 3
+        return chatViewModel.connectedPeers.contains(peerID) ? 1 : 3
     }
 
     private func createRipple(for message: BitchatMessage) {
