@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>FrogChat</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>frogchat</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>FrogChat uses Bluetooth to create a swampy mesh network for croaking with nearby frogs. 🐸</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>FrogChat uses Bluetooth to discover other frogs hopping around the swamp.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>FrogChat uses the camera to scan ribbit patterns (QR codes) to verify frog identities.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>FrogChat lets you share images from your lily pad to other frogs in the swamp.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>FrogChat uses the microphone to record croaks (voice notes) that echo across the swamp.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>FrogChat uses your location to find nearby swamps and ponds for local chats. 🌿</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>bluetooth-peripheral</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+</dict>
+</plist>
